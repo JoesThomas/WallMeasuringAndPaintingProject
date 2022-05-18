@@ -4,11 +4,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class WallDimensions {
+    //Global variables to ensure that the main variables are accessible for all classes
     public static int amountOfWalls = 4;
     public static ArrayList<Wall> walls = new ArrayList<>();
     public static float paintNeeded;
 
-
+    //Function to allow the user to input the measurements of the room, in the current version the maximum amount of rooms is 4
+    //I would also add a standardised height of walls as this currently allows errors to arise from lack of validation
     public static void wallSize() throws IOException {
         for (int i = 0; i < amountOfWalls; i++) {
             BufferedReader reader = new BufferedReader(
@@ -17,8 +19,8 @@ public class WallDimensions {
             String heightstring = reader.readLine();
             System.out.println("Please input Length of wall " + (i+1));
             String lengthstring = reader.readLine();
-            int height = Integer.parseInt(heightstring);
-            int length = Integer.parseInt(lengthstring);
+            float height = Float.parseFloat(heightstring);
+            float length = Float.parseFloat(lengthstring);
             Wall currentWall = new Wall();
             currentWall.setHeight(height);
             currentWall.setLength(length);
@@ -26,6 +28,7 @@ public class WallDimensions {
         }
     }
 
+    //This calculates the area of the rectangular shaped room
     public static float calculateArea() {
         float length = walls.get(0).length;
         float width = walls.get(0).length;
@@ -38,6 +41,7 @@ public class WallDimensions {
         return length*width;
     }
 
+    //This calculates the amount of paint needed to paint the walls based upon the idea that each square metre of wall requires 100ml of paint
     public static void calculatePaintNeeded() {
         for (int i = 0; i < walls.size(); i++) {
             float lengthOfWall = walls.get(i).length;
@@ -48,9 +52,9 @@ public class WallDimensions {
         System.out.println("Paint needed to paint all walls " + paintNeeded + "ml");
     }
 
+    //This calculates the volume of the room based upon the return value of the calculateArea function
     public static void calculateVolume() {
         System.out.println("Volume of room is " + (calculateArea()) * walls.get(0).height + "m3");
     }
-
 
 }

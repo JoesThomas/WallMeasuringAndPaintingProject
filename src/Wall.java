@@ -1,13 +1,13 @@
 public class Wall {
-    int height;
-    int length;
+    float height;
+    float length;
 
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
-    public void setLength(int length) {
+    public void setLength(float length) {
         this.length = length;
     }
 
